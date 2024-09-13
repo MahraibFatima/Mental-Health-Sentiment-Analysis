@@ -23,7 +23,6 @@ list_of_files = [
     "app.py",
     "requirements.txt",
     "setup.py",
-    "research/trials.ipynb",
     "templates/index.html"
 ]
 
