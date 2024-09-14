@@ -1,0 +1,5 @@
+XGBClassifier:
+  learning_rate: 0.5
+  max_depth: 7
+  n_estimators: 500
+  random_state: 101
