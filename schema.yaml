@@ -1,0 +1,5 @@
+COLUMNS:
+  index: int64
+  statement: str
+TARGET_COLUMN:
+  name: status
