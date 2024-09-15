@@ -15,25 +15,25 @@ This project demonstrates the deployment of a machine learning model for Analyzi
 
 1. **Create Environment:**
 
-    ```bash
+    ```python
     conda create -n MentalHealth-Analysis python=3.8 -y
     ```
 
 2. **Activate Environment:**
 
-    ```bash
+    ```python
     conda activate MentalHealth-Analysis
     ```
 
 3. **Install Dependencies:**
 
-    ```bash
+    ```python
     pip install -r requirements.txt
     ```
 
 4. **Run Application:**
 
-    ```bash
+    ```python
     python app.py
     ```
 
