@@ -10,6 +10,6 @@ nltk==3.8.1
 scikit-learn==1.3.0
 xgboost==1.7.6
 joblib==1.3.2
-py yaml
-python box
+pyyaml
+python-box
 ensure
