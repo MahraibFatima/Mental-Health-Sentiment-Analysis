@@ -1,5 +1,4 @@
 # from -> research/01_data_ingestion.ipynb __cell-8__
-
 import os
 import urllib.request as request
 import zipfile
@@ -7,6 +6,9 @@ from pathlib import Path
 from src.MentalHealthAnalysis import logger
 from src.MentalHealthAnalysis.utils.common import get_size
 from src.MentalHealthAnalysis.entity.config_entity import DataIngestionConfig
+import urllib.request as request
+import zipfile
+
 
 class DataIngestion:
     def __init__(self, config: DataIngestionConfig):
@@ -21,7 +23,6 @@ class DataIngestion:
             logger.info(f"{filename} download! with following info: \n{headers}")
         else:
             logger.info(f"File already exists of size: {get_size(Path(self.config.local_data_file))}")
-    
     def extract_zip_file(self):
         """
         zip_file_path: str
