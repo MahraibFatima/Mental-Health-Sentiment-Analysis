@@ -1,5 +1,13 @@
-XGBClassifier:
+train_data_path: "data/train.csv"
+test_data_path: "data/test.csv"
+target_column: "status"
+
+xgboost_params:
   learning_rate: 0.5
   max_depth: 7
   n_estimators: 500
   random_state: 101
+
+model:
+  root_dir: "models"
+  model_name: "xgboost_model.pkl"
