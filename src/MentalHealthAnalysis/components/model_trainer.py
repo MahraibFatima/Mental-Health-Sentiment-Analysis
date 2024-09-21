@@ -26,7 +26,6 @@ class ModelTrainer:
         train_y = train_data[self.config.target_column].values.ravel()
         test_y = test_data[self.config.target_column].values.ravel()
 
-        print(train_x.columns)
         train_x['statement'] = train_x['statement'].fillna('').astype(str)
         test_x['statement'] = test_x['statement'].fillna('').astype(str) # Replace NaN with an empty string
 
@@ -37,14 +36,13 @@ class ModelTrainer:
         text_transformers = [(f'tfidf_{col}', Pipeline([
             ('tfidf', TfidfVectorizer(max_features=1000))
         ]), col) for col in text_columns]
-        print(test_x.columns)
 
         # Create a column transformer to apply TF-IDF to text columns and scaling to numerical columns
         # Define preprocessors for text and numeric data
         preprocessor = ColumnTransformer(
             transformers=[
                 ('text', TfidfVectorizer(), 'statement'),  # Use correct column name
-                ('num', StandardScaler(), ['numerical_columns'])  # Adjust for your numeric column(s)
+                ('num', StandardScaler(), train_x.select_dtypes(include=['float64', 'int64']).columns.tolist())  # Adjust for your numeric column(s)
             ]
         )
 
