@@ -2,7 +2,6 @@ from src.MentalHealthAnalysis.config.configuration import ConfigurationManager
 from src.MentalHealthAnalysis.components.data_validation import DataValiadtion
 from src.MentalHealthAnalysis import logger
 
-
 STAGE_NAME = "Data Validation stage"
 
 class DataValidationTrainingPipeline:
@@ -14,7 +13,6 @@ class DataValidationTrainingPipeline:
         data_validation_config = config.get_data_validation_config()
         data_validation = DataValiadtion(config=data_validation_config)
         data_validation.validate_all_columns()
-
 
 if __name__ == '__main__':
     try:

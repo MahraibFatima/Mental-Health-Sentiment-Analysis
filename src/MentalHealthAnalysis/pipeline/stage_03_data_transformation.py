@@ -3,14 +3,11 @@ from src.MentalHealthAnalysis.components.data_transformation import DataTransfor
 from src.MentalHealthAnalysis import logger
 from pathlib import Path
 
-
-
 STAGE_NAME = "Data Transformation stage"
 
 class DataTransformationTrainingPipeline:
     def __init__(self):
         pass
-
 
     def main(self):
         try:
