@@ -15,3 +15,6 @@ imblearn==0.0
 pyyaml
 python-box
 ensure
+Flask
+Flask-Cors
+-e .
