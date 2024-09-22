@@ -2,14 +2,14 @@ from flask import Flask, render_template, request
 import os
 import numpy as np
 from src.MentalHealthAnalysis.pipeline.prediction import PredictionPipeline
-from src.MentalHealthAnalysis.utils.utilities import load_model, preprocess_statement  # Import utility functions
+#from src.MentalHealthAnalysis.utils.utilities import load_model, preprocess_statement  # Import utility functions
 
 app = Flask(__name__)
 
-# Load the model from the utils
-model = load_model()
+# # Load the model from the utils
+# model = load_model()
 
-# Prediction pipeline object
+# # Prediction pipeline object
 obj = PredictionPipeline()
 
 @app.route('/', methods=['GET'])  # route to display the home page
@@ -29,15 +29,12 @@ def training():
 def index():
     if request.method == 'POST':
         try:
-            statement = request.form['statement']  # Assuming 'statement' is a string
+            Thoughts = str(request.form['Thoughts'])
 
-            # Process the 'statement'
-            processed_statement = preprocess_statement(statement)
-
-            data = np.array([processed_statement]).reshape(1, -1)
+            data = np.array([Thoughts]).reshape(1, -1)
 
             # Make prediction using the model
-            prediction = model.predict(data)
+            #prediction = model.predict(data)
 
             # Prepare the response
             predict = obj.predict(data)
