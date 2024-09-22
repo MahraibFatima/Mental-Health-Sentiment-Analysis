@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Sentiment Predictor</title>
+</head>
+
+<body>
+    <h1>Text Sentiment Prediction</h1>
+
+    <form id="predictionForm">
+        <textarea id="textInput" placeholder="Enter text..."></textarea>
+        <button type="button" onclick="predict()">Predict</button>
+    </form>
+
+    <div id="predictionResult"></div>
+
+    <script>
+        function predict() {
+            var textInput = document.getElementById("textInput");
+            var predictionResult = document.getElementById("predictionResult");
+
+
+            if (textInput.value.trim() !== "") {
+                // Predict on single sentence
+                fetch("http://localhost:5000/predict", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ "text": textInput.value.trim() })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        predictionResult.innerHTML = "Predicted sentiment: " + data.prediction;
+                    });
+            }
+        }
+
+        function downloadPredictions() {
+            console.log("Download prediction")
+        }
+
+    </script>
+
+</body>
+
+</html>
