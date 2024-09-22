@@ -30,8 +30,9 @@ class ModelTrainerConfig:
     train_data_path: Path
     test_data_path: Path
     model_name: str
-    alpha: float
-    l1_ratio: float
+    learning_rate: float
+    max_depth: int
+    n_estimators: int
     target_column: str
 
 #from -> research/05_model_evaluation.ipynb
