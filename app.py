@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import os
 import numpy as np
 from src.MentalHealthAnalysis.pipeline.prediction import PredictionPipeline
-from utils import load_model, preprocess_statement  # Import utility functions
+from src.MentalHealthAnalysis.utils.utilities import load_model, preprocess_statement  # Import utility functions
 
 app = Flask(__name__)
 
