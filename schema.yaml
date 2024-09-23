@@ -1,5 +1,5 @@
 COLUMNS:
-  index: int64
+  Unnamed:0 : int64
   statement: str
 TARGET_COLUMN:
   name: status
