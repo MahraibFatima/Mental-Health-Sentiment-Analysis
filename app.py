@@ -1,15 +1,13 @@
 from flask import Flask, render_template, request
 import os
 import numpy as np
+import pandas as pd
 from src.MentalHealthAnalysis.pipeline.prediction import PredictionPipeline
-#from src.MentalHealthAnalysis.utils.utilities import load_model, preprocess_statement  # Import utility functions
+import joblib
 
 app = Flask(__name__)
 
-# # Load the model from the utils
-# model = load_model()
-
-# # Prediction pipeline object
+# Prediction pipeline object
 obj = PredictionPipeline()
 
 @app.route('/', methods=['GET'])  # route to display the home page
@@ -29,15 +27,32 @@ def training():
 def index():
     if request.method == 'POST':
         try:
+            # Get user input from form
             Thoughts = str(request.form['Thoughts'])
 
-            data = np.array([Thoughts]).reshape(1, -1)
+            # Preprocess input to match training data structure
+            input_data = pd.DataFrame({
+                'index': [1],  # Add a dummy 'index' column
+                'statement': [Thoughts],
+                'num_of_characters': [len(Thoughts)],  # Example: Number of characters
+                'num_of_sentences': [Thoughts.count('.')],  # Example: Number of sentences
+                'tokens': [len(Thoughts.split())],  # Example: Number of tokens
+                'tokens_stemmed': [len(Thoughts.split())]  # Example: Number of stemmed tokens
+            })
 
-            # Make prediction using the model
-            #prediction = model.predict(data)
+            # Debugging: Print columns to verify they match the expected format
+            print(f"Input data columns: {input_data.columns.tolist()}")
 
-            # Prepare the response
-            predict = obj.predict(data)
+            # Ensure no issues with index
+            input_data.reset_index(drop=True, inplace=True)  # Ensure index isn't part of the columns
+
+            # Load the model
+            model_pipeline = joblib.load('artifacts/model_trainer/model.joblib')
+
+            # Make prediction using the PredictionPipeline object
+            predict = model_pipeline.predict(input_data)
+
+            # Render the prediction result on the results page
             return render_template('results.html', prediction=str(predict))
 
         except Exception as e:
